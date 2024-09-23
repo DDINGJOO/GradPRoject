@@ -1,0 +1,41 @@
+package com.example.graduation.Auth.Dto;
+
+import com.example.graduation.Auth.entity.Authority;
+import com.example.graduation.Member.entity.User;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.validation.constraints.NotBlank;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@ApiModel(value = "로그인 요청")
+public class LoginRequestDto {
+
+    @ApiModelProperty(value = "아이디", notes = "아이디를 입력해주세요", required = true, example = "sosow0212")
+    @NotBlank(message = "{LoginRequestDto.username.notBlank}")
+    private String username;
+
+    @ApiModelProperty(value = "비밀번호", required = true, example = "123456")
+    @NotBlank(message = "{LoginRequestDto.password.notBlank}")
+    private String password;
+
+    public User toMember(PasswordEncoder passwordEncoder) {
+        return User.builder()
+                .username(username)
+                .password(passwordEncoder.encode(password))
+                .authority(Authority.ROLE_USER)
+                .build();
+    }
+
+    public UsernamePasswordAuthenticationToken toAuthentication() {
+        return new UsernamePasswordAuthenticationToken(username, password);
+    }
+
+}
