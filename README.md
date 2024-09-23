@@ -8,7 +8,6 @@
 - MySQL Driver
 - Validation
 - Swagger
-- Radis
 - REACT
 
 ### AIP docs
