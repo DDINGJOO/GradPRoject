@@ -22,7 +22,9 @@ import BoardDetail from "./BackData/Board/BoardDetail";
 import BoardSearch from "./BackData/Board/BoardSearch";
 import BoardEdit from "./BackData/Board/BoardEdit";
 import Comment from "./BackData/Comment/Comment";
-
+import ProfileEdit from "./BackData/Profile/ProfileEdit";
+import ProfileView from "./BackData/Profile/ProfileView";
+import ProfileCreate from "./BackData/Profile/ProfileCreate";
 
 
 const App = () => {
@@ -61,8 +63,10 @@ const App = () => {
                 <Route path="/boards/detail/:id/edit" element={<BoardEdit />} />
 
 
-                {/*Profile CRUD */}
-
+                {/*Profile CRU */}
+                <Route path="/profile/view/:id" element={<ProfileView />} />
+                <Route path="/profile/edit/:id" element={<ProfileEdit />} />
+                <Route path="/profile/create/:id" element={<ProfileCreate />} />
 
 
 

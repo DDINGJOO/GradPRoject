@@ -19,6 +19,7 @@ import java.util.Optional;
 @Api(value = "Profile Controller", tags = "Profile ")
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api")
 public class ProfileController {
     private final ProfileService profileService;
@@ -47,8 +48,4 @@ public class ProfileController {
     public Response createUserInfo(@ApiParam(value = "User ID", required = true) @PathVariable int id,ProfileUpdateCondition condition,MultipartFile profileImageFile) {
         return Response.success(profileService.createProfile(id, condition,profileImageFile));
     }
-
-
-
-
 }
