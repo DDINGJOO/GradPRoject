@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LoginPage from './BackData/Auth/LoginPage'; // 로그인 페이지
-import SignUpPage from './BackData/Auth/SignUpPage'; // 회원가입 페이지
-import UserList from './BackData/Member/UserList'; // 유저 리스트
-import UserDetail from './BackData/Member/UserDetail'; // 유저 상세
-import UserEdit from './BackData/Member/UserEdit'; // 유저 수정
+import LoginPage from './BackData/Auth/LoginPage';
+import SignUpPage from './BackData/Auth/SignUpPage';
+import UserList from './BackData/Member/UserList';
+import UserDetail from './BackData/Member/UserDetail';
+import UserEdit from './BackData/Member/UserEdit';
 import CurrentUser from "./BackData/Member/CurrentUser";
 import SendMessage from "./BackData/Message/SendMessage";
 import ReadMessagesListBySender from "./BackData/Message/ReadMessagesListBySender";
@@ -17,7 +17,7 @@ import FirstCreateCategory from "./BackData/Category/FirstCreateCategory";
 import ReadCategory from "./BackData/Category/ReadCategory";
 import CategoryUnion from "./BackData/Category/CategoryUnion";
 import BoardCreate from "./BackData/Board/BoardCreate";
-import BoardList from "./BackData/Board/BoardList"; // 추가한 컴포넌트
+import BoardList from "./BackData/Board/BoardList";
 import BoardDetail from "./BackData/Board/BoardDetail";
 import BoardSearch from "./BackData/Board/BoardSearch";
 import BoardEdit from "./BackData/Board/BoardEdit";
@@ -39,7 +39,7 @@ const App = () => {
                 <Route path="/users/:id/edit" element={<UserEdit />} />
                 <Route path="/users/current" element={<CurrentUser />} />
 
-                {/* 메세지 보내기, 확인, 삭제*/}
+                {/* 메세지 CRUD*/}
                 <Route path="messages/send" element={<SendMessage />} />
                 <Route path="messages/sender" element={<ReadMessagesListBySender />} />
                 <Route path="messages/receiver" element={<ReadMessagesListByReceiver />} />
@@ -55,12 +55,12 @@ const App = () => {
 
                 {/* 게시글 CRUD */}
                 <Route path="/boards/create" element={<BoardCreate />} />
-                <Route path="/boards/list" element={<BoardList />} /> {/* 추가한 게시글 목록 경로 */}
-                <Route path="/boards/detail/:id" element={<BoardDetail />} /> {/* 추가된 경로 */}
+                <Route path="/boards/list" element={<BoardList />} />
+                <Route path="/boards/detail/:id" element={<BoardDetail />} />
                 <Route path="/boards/search" element={<BoardSearch />} />
-                <Route path="/boards/:id/edit" element={<BoardEdit />} /> {/* 수정 라우트 추가 */}
+                <Route path="/boards/:id/edit" element={<BoardEdit />} />
 
-                {/* 기본 경로 (루트로 접속했을 때 리다이렉트) */}
+                {/* 기본 경로  */}
                 <Route path="/" element={<UserList />} />
             </Routes>
         </Router>
