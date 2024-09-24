@@ -11,6 +11,13 @@ import ReadMessagesListBySender from "./BackData/Message/ReadMessagesListBySende
 import ReadMessagesListByReceiver from "./BackData/Message/ReadMessagesListByReceiver";
 import DeleteMessageByReceiver from "./BackData/Message/DeleteMessageByReceiver";
 import DeleteMessagesBySender from "./BackData/Message/DeleteMessagesBySender";
+import CreateCategory from "./BackData/Category/CreateCategory";
+import DeleteCategory from "./BackData/Category/DeleteCategory";
+import FirstCreateCategory from "./BackData/Category/FirstCreateCategory";
+import ReadCategory from "./BackData/Category/ReadCategory";
+import CategoryUnion from "./BackData/Category/CategoryUnion";
+
+
 
 
 const App = () => {
@@ -32,7 +39,21 @@ const App = () => {
                 <Route path="messages/sender" element={<ReadMessagesListBySender />}/>
                 <Route path="messages/receiver" element={<ReadMessagesListByReceiver />}/>
                 <Route path="messages/receiver/delete/" element={<DeleteMessageByReceiver />}/>
-                <Route path="messages/sender/delete/" element={<DeleteMessageByReceiver />}/>
+                <Route path="messages/sender/delete/" element={<DeleteMessagesBySender />}/>
+
+
+
+                {/* 카테고리 CRUD */}
+
+                <Route path="/categories" element={<ReadCategory />} />
+                <Route path="/categories/new" element={<CreateCategory />} />
+                <Route path="/categories/delete" element={<DeleteCategory />} />
+                <Route path="/categories/init" element={<FirstCreateCategory />} />
+                <Route path="/categories/union" element={<CategoryUnion />} />
+
+
+
+
 
 
 

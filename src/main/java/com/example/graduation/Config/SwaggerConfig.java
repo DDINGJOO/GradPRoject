@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Import(BeanValidatorPluginsConfiguration.class)
-//@Configuration
+@Configuration
 // http://localhost:8080/swagger-ui/index.html
 public class SwaggerConfig {
 
