@@ -58,7 +58,14 @@ const App = () => {
                 <Route path="/boards/list" element={<BoardList />} />
                 <Route path="/boards/detail/:id" element={<BoardDetail />} />
                 <Route path="/boards/search" element={<BoardSearch />} />
-                <Route path="/boards/:id/edit" element={<BoardEdit />} />
+                <Route path="/boards/detail/:id/edit" element={<BoardEdit />} />
+
+
+                {/*Profile CRUD */}
+
+
+
+
 
                 {/* 기본 경로  */}
                 <Route path="/" element={<UserList />} />

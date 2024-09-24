@@ -65,7 +65,7 @@ const BoardEdit = () => {
                 },
             });
             alert('게시물이 수정되었습니다.');
-            navigate(`/boards/${id}`); // 수정 후 게시물 상세 페이지로 이동
+            navigate(`/boards/detail/${id}`); // 수정 후 게시물 상세 페이지로 이동
         } catch (err) {
             console.error('Error updating the board:', err);
             alert('게시물 수정에 실패했습니다.');
