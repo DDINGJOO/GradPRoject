@@ -96,6 +96,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/comments").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/api/comments/{id}").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 
+                .antMatchers(HttpMethod.GET, "/api/profile/view/{id}").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.POST, "/api/profile/create/{id}").authenticated()
+                .antMatchers(HttpMethod.PUT, "/api/profile/edit/{id}").authenticated()
+
+
                 .antMatchers("/images/**").permitAll() // 이미지 접근 허용
 
 

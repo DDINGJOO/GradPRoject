@@ -64,7 +64,7 @@ const BoardList = () => {
 
     // 게시물 클릭 핸들러
     const handleBoardClick = (boardId) => {
-        navigate(`/board/${boardId}`); // 게시물 상세 페이지로 이동
+        navigate(`/boards/detail/${boardId}`); // 게시물 상세 페이지로 이동
     };
 
     return (
