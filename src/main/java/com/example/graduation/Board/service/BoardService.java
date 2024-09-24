@@ -82,7 +82,7 @@ public class BoardService {
         if (user != board.getUser()) {
             throw new MemberNotEqualsException();
         }
-
+        deleteImages(board.getImages());
         boardRepository.delete(board);
     }
 

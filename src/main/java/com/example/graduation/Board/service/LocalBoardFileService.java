@@ -1,23 +1,25 @@
 package com.example.graduation.Board.service;
 
 
+
+import com.example.graduation.Board.service.BoardFileService;
 import com.example.graduation.exception.FileUploadFailureException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
-
 @Service
 @Slf4j
 public class LocalBoardFileService implements BoardFileService {
 
-    //TODO : !! 이미지 경로 수정하기
-    private String location = "C:/Users/soh10/Desktop/Graduation/image";
-
+    @Value("${imgLocation}")
+    private String location;
 
     @PostConstruct
     void postConstruct() {
@@ -41,4 +43,3 @@ public class LocalBoardFileService implements BoardFileService {
         new File(location + filename).delete();
     }
 }
-

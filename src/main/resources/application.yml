@@ -39,8 +39,8 @@ spring:
 
 
 #본인 데스크톱 경로로 필수 변경
-imgLocation: C:/User/soh10/Desktop/Graduation/image/
-uploadPath: file:///Users/soh10/Desktop/Graduation/image/
+imgLocation: C:/Users/soh10/Desktop/Graduation/images/
+uploadPath: file:///Users/soh10/Desktop/Graduation/images/
 
 jwt:
   secret: c3ByaW5nLWJvb3Qtc2VjdXJpdHktand0LXR1dG9yaWFsLWppd29vbi1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtdHV0b3JpYWwK

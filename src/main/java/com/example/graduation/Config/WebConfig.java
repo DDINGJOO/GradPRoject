@@ -18,15 +18,16 @@ import java.time.Duration;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Value("${uploadPath}")
-    String uploadPath;
+    @Value("${imgLocation}")
+    String location;
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(ResourceHandlerRegistry registry){
         registry.addResourceHandler("/img/**")
-                .addResourceLocations(uploadPath)
-                .setCacheControl(CacheControl.maxAge(Duration.ofHours(1L)).cachePublic());
+                .addResourceLocations(location);
     }
+
+
 
     @Bean
     public HttpFirewall defaultHttpFirewall() {

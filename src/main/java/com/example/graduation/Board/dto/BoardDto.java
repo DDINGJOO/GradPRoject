@@ -31,7 +31,7 @@ public class BoardDto {
                 board.getTitle(),
                 board.getContent(),
                 UserDto.toDto(board.getUser()),
-                board.getImages().stream().map(i -> BoardImageDto.toDto(i)).collect(toList()),
+                board.getImages().stream().map(BoardImageDto::toDto).collect(toList()),
                 board.getCreateDate()
         );
     }
