@@ -21,6 +21,7 @@ import BoardList from "./BackData/Board/BoardList"; // 추가한 컴포넌트
 import BoardDetail from "./BackData/Board/BoardDetail";
 import BoardSearch from "./BackData/Board/BoardSearch";
 import BoardEdit from "./BackData/Board/BoardEdit";
+import Comment from "./BackData/Comment/Comment";
 
 
 
@@ -53,9 +54,9 @@ const App = () => {
                 <Route path="/categories/union" element={<CategoryUnion />} />
 
                 {/* 게시글 CRUD */}
-                <Route path="/board" element={<BoardCreate />} />
-                <Route path="/board/list" element={<BoardList />} /> {/* 추가한 게시글 목록 경로 */}
-                <Route path="/board/:id" element={<BoardDetail />} /> {/* 추가된 경로 */}
+                <Route path="/boards/create" element={<BoardCreate />} />
+                <Route path="/boards/list" element={<BoardList />} /> {/* 추가한 게시글 목록 경로 */}
+                <Route path="/boards/detail/:id" element={<BoardDetail />} /> {/* 추가된 경로 */}
                 <Route path="/boards/search" element={<BoardSearch />} />
                 <Route path="/boards/:id/edit" element={<BoardEdit />} /> {/* 수정 라우트 추가 */}
 

@@ -1,71 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Comments from "../Comment/Comment";
 
 const BoardDetail = () => {
-    const { id } = useParams(); // 게시글 ID
-    const [board, setBoard] = useState(null);
-    const [error, setError] = useState(null);
-    const navigate = useNavigate(); // 페이지 이동을 위해 useNavigate 사용
+    const { id } = useParams(); // URL 파라미터에서 게시글 ID 가져오기
+    const [board, setBoard] = useState(null); // 게시글 상태
+    const [error, setError] = useState(null); // 에러 상태
 
     useEffect(() => {
-        const fetchBoard = async () => {
+        const fetchBoardDetail = async () => {
             try {
                 const response = await axios.get(`http://localhost:8080/api/boards/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`, // 토큰 추가
                     },
                 });
-                setBoard(response.data.result.data); // 데이터 설정
+                setBoard(response.data.result.data); // 게시글 데이터 설정
             } catch (err) {
-                console.error('Error fetching board details:', err);
-                setError('Error occurred while fetching board details.');
+                console.error('게시글 조회 실패:', err);
+                setError('게시글을 불러오는 데 실패했습니다.');
             }
         };
 
-        fetchBoard();
+        fetchBoardDetail(); // 게시글 상세 조회
     }, [id]);
 
-    const handleDelete = async () => {
-        if (window.confirm('정말로 이 게시물을 삭제하시겠습니까?')) {
-            try {
-                await axios.delete(`http://localhost:8080/api/boards/${id}`, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`, // 토큰 추가
-                    },
-                });
-                alert('게시물이 삭제되었습니다.');
-                navigate('/board'); // 삭제 후 게시물 목록으로 이동
-            } catch (err) {
-                console.error('Error deleting the board:', err);
-                alert('게시물 삭제에 실패했습니다.');
-            }
-        }
-    };
-
     if (error) {
-        return <p>{error}</p>;
+        return <p>{error}</p>; // 에러 처리
     }
 
     if (!board) {
-        return <p>Loading...</p>; // 로딩 상태 처리
+        return <p>Loading...</p>; // 데이터 로딩 중
     }
 
     return (
         <div>
-            <h2>{board.title} (id = {board.id})</h2>
+            <h1>{board.title}</h1>
             <p>{board.content}</p>
-            <p>작성자: {board.userDto?.name || '정보 없음'}</p>
-            <p>작성일: {board.createdAt}</p>
-            {board.images && board.images.length > 0 && (
-                <div>
-                    <h3>이미지:</h3>
-                    {board.images.map(image => (
-                        <img key={image.id} src={`http://localhost:8080/images/${image.uniqueName}`} alt={image.originName} />
-                    ))}
-                </div>
-            )}
-            <button onClick={handleDelete}>게시물 삭제</button>
+            <p>작성자: {board.userDto.name}</p>
+            {board.images.map(image => (
+                <img key={image.id} src={`http://localhost:8080/images/${image.uniqueName}`} alt={image.originName} />
+            ))}
+            <h3>댓글</h3>
+            <Comments boardId={board.id} /> {/* 댓글 컴포넌트 사용 */}
         </div>
     );
 };
