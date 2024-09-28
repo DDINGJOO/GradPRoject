@@ -38,9 +38,18 @@ public class WebConfig implements WebMvcConfigurer {
     public void configure(WebSecurity web) throws Exception {
         web.httpFirewall(defaultHttpFirewall());
     }
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOriginPatterns("*");
+            }
+        };
+    }
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")
+        registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000") // React 애플리케이션이 돌아가는 주소
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")

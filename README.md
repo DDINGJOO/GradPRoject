@@ -9,6 +9,7 @@
 - Validation
 - Swagger
 - REACT
+- Spring WebSocket
 
 ### AIP docs
 - User : 
@@ -16,8 +17,8 @@
 - Comment : 
 - Message : 
 - Report : 
-- BookList
-- Chat
+- Book :
+- Chat :
 - Admin : 
 
 
