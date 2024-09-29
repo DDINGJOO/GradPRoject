@@ -21,12 +21,12 @@ import BoardList from "./BackData/Board/BoardList";
 import BoardDetail from "./BackData/Board/BoardDetail";
 import BoardSearch from "./BackData/Board/BoardSearch";
 import BoardEdit from "./BackData/Board/BoardEdit";
-import Comment from "./BackData/Comment/Comment";
 import ProfileEdit from "./BackData/Profile/ProfileEdit";
 import ProfileView from "./BackData/Profile/ProfileView";
 import ProfileCreate from "./BackData/Profile/ProfileCreate";
-
-
+import ChatRoom from "./Chatapp/ChatRoom";
+import ChatRoomList from "./Chatapp/ChatRoomList";
+import CreateRoom from "./Chatapp/CreateRoom";
 const App = () => {
     return (
         <Router>
@@ -68,7 +68,10 @@ const App = () => {
                 <Route path="/profile/edit/:id" element={<ProfileEdit />} />
                 <Route path="/profile/create/:id" element={<ProfileCreate />} />
 
-
+                {/* Chat Room  */}
+                <Route path="/roomList" element={<ChatRoomList />} />
+                <Route path="/room/:roomId" element={<ChatRoom />} />
+                <Route path="/createRoom" element={<CreateRoom />} />
 
 
                 {/* 기본 경로  */}

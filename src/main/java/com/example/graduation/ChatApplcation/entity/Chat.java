@@ -27,10 +27,10 @@ public class Chat {
     @JoinColumn(name = "room_id")
     private ChatRoom room;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+
+
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private User sender;
+    private String sender;
 
 
 
@@ -42,7 +42,7 @@ public class Chat {
     private LocalDateTime sendDate;
 
     @Builder
-    public Chat(ChatRoom room, User sender, String message) {
+    public Chat(ChatRoom room, String sender, String message) {
         this.room = room;
         this.sender = sender;
         this.message = message;
@@ -56,7 +56,7 @@ public class Chat {
      * @param sender 보낸이
      * @return Chat Entity
      */
-    public static Chat createChat(ChatRoom room, User sender, String message) {
+    public static Chat createChat(ChatRoom room, String sender, String message) {
         return Chat.builder()
                 .room(room)
                 .sender(sender)

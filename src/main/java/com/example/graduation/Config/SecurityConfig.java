@@ -101,8 +101,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/api/profile/edit/{id}").authenticated()
 
 
-                .antMatchers("/images/**").permitAll() // 이미지 접근 허용
+                .antMatchers(HttpMethod.GET, "/api/rooms/roomList").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.POST, "/api/rooms/create").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 
+
+
+                .antMatchers("/images/**").permitAll() // 이미지 접근 허용
+                .antMatchers("/ws-stomp/**").permitAll()  // Allow WebSocket connections without authentication
 
                 .anyRequest().hasAnyRole("ROLE_ADMIN")
 //                .anyRequest().authenticated() // 나머지는 전부 인증 필요

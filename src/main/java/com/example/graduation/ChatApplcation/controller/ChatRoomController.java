@@ -1,48 +1,39 @@
 package com.example.graduation.ChatApplcation.controller;
 
+import com.example.graduation.ChatApplcation.dto.ChatRoomCreateRequest;
+import com.example.graduation.ChatApplcation.entity.Chat;
 import com.example.graduation.ChatApplcation.entity.ChatRoom;
 import com.example.graduation.ChatApplcation.service.ChatService;
+import com.example.graduation.response.Response;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequiredArgsConstructor
+@RestController
+@RequestMapping("/api/rooms")
 public class ChatRoomController {
-    private final ChatService chatService;
 
-    /**
-     * 채팅방 참여하기
-     * @param roomId 채팅방 id
-     */
-//    @GetMapping("/{roomId}")
-//    public String joinRoom(@PathVariable(required = false) Long roomId, Model model) {
-//        List<Chat> chatList = chatService.findAllChatByRoomId(roomId);
-//
-//        model.addAttribute("roomId", roomId);
-//        model.addAttribute("chatList", chatList);
-//        return "room";
-//    }
+    private final ChatService chatRoomService;
 
-    /**
-     * 채팅방 리스트 보기
-     */
+    public ChatRoomController(ChatService chatRoomService) {
+            this.chatRoomService = chatRoomService;
+    }
+
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Response createRoom(@RequestBody ChatRoomCreateRequest request) {
+        ChatRoom chatRoom = chatRoomService.createRoom(request.getRoomName());
+        return Response.success(chatRoom);
+    }
+
     @GetMapping("/roomList")
-    public String roomList(Model model) {
-        List<ChatRoom> roomList = chatService.findAllRoom();
-        model.addAttribute("roomList", roomList);
-        return "roomList";
+    @ResponseStatus(HttpStatus.OK)
+    public Response getRoomList() {
+        List<ChatRoom> rooms = chatRoomService.findAllRoom();
+        return Response.success(rooms);
     }
-
-    /**
-     * 방만들기 폼
-     */
-    @GetMapping("/roomForm")
-    public String roomForm() {
-        return "roomForm";
-    }
-
 }
