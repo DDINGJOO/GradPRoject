@@ -18,8 +18,8 @@ import static com.example.graduation.response.Response.success;
 @Api(value = "Sign Controller", tags = "Sign")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api")
-public class AuthController {
+@RequestMapping("/api/OAuth")
+public class OAuthController {
 
     private final AuthService authService;
 

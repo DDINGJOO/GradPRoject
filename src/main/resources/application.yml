@@ -31,6 +31,24 @@ spring:
     redis:
       host: localhost
       port: 6379
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 326048053675-7v7efv49t2mcodd6n0qiddtj8ob785kf.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: = http://localhost:8080/login/oauth_google_check
+            scope:
+              - email
+              - profileps://oauth2.googleapis.com
+
+
+  
+
+
+
+
 
 
 # image 업로드를위한 multipart
