@@ -40,7 +40,7 @@ public class BoardController {
                            @RequestParam(value = "category", defaultValue = "1") int categoryId) {
         // http://localhost:8080/api/boards?category=3
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User user = userRepository.findByUsername(authentication.getName());
 
         return Response.success(boardService.create(req, categoryId, user));
     }
@@ -65,7 +65,7 @@ public class BoardController {
     @ResponseStatus(HttpStatus.OK)
     public Response editBoard(@ApiParam(value = "게시글 id", required = true) @PathVariable int id, @Valid @ModelAttribute BoardUpdateRequest req) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User user = userRepository.findByUsername(authentication.getName());
 
         return Response.success(boardService.editBoard(id, req, user));
     }
@@ -76,7 +76,7 @@ public class BoardController {
     @ResponseStatus(HttpStatus.OK)
     public Response deleteBoard(@ApiParam(value = "게시글 id", required = true) @PathVariable int id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User user = userRepository.findByUsername(authentication.getName());
 
         boardService.deleteBoard(id, user);
         return Response.success();

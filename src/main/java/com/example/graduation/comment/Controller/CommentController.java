@@ -39,7 +39,7 @@ public class CommentController {
     @ResponseStatus(HttpStatus.CREATED)
     public Response create(@Valid @RequestBody CommentCreateRequest req) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User user = userRepository.findByUsername(authentication.getName());
 
         return Response.success(commentService.create(req, user));
     }
@@ -49,7 +49,7 @@ public class CommentController {
     @ResponseStatus(HttpStatus.OK)
     public Response delete(@ApiParam(value = "댓글 id", required = true) @PathVariable int id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User user = userRepository.findByUsername(authentication.getName());
 
         commentService.delete(id, user);
         return Response.success();

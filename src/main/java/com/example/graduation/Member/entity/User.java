@@ -31,6 +31,8 @@ public class User {
     @Column(nullable = false, unique = true)
     private String nickname;
 
+    private String email;
+
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
@@ -57,6 +59,4 @@ public class User {
         this.nickname = nickname;
         this.authority = authority;
     }
-
-
 }

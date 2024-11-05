@@ -8,6 +8,7 @@ import com.example.graduation.Auth.repository.RefreshTokenRepository;
 import com.example.graduation.Config.jwt.TokenProvider;
 import com.example.graduation.Member.entity.User;
 import com.example.graduation.Member.repository.UserRepository;
+
 import com.example.graduation.exception.LoginFailureException;
 import com.example.graduation.exception.MemberNicknameAlreadyExistsException;
 import com.example.graduation.exception.MemberUsernameAlreadyExistsException;
@@ -48,9 +49,7 @@ public class AuthService {
 
     @Transactional
     public TokenResponseDto signIn(LoginRequestDto req) {
-        User user = userRepository.findByUsername(req.getUsername()).orElseThrow(() -> {
-            return new LoginFailureException();
-        });
+        User user = userRepository.findByUsername(req.getUsername());
 
         validatePassword(req, user);
 

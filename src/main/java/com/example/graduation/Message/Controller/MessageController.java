@@ -31,7 +31,7 @@ public class MessageController {
     @PostMapping("/messages")
     public Response createMessage(@Valid @RequestBody MessageCreateRequest req) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User sender = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User sender = userRepository.findByUsername(authentication.getName());
         return Response.success(messageService.createMessage(sender, req));
     }
 
@@ -41,7 +41,7 @@ public class MessageController {
     public Response receiveMessages() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User user = userRepository.findByUsername(authentication.getName());
 
         return Response.success(messageService.receiveMessages(user));
     }
@@ -51,7 +51,7 @@ public class MessageController {
     @GetMapping("/messages/receiver/{id}")
     public Response receiveMessage(@ApiParam(value = "쪽지 id", required = true)@PathVariable int id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User user = userRepository.findByUsername(authentication.getName());
 
         return Response.success(messageService.receiveMessage(id, user));
     }
@@ -62,7 +62,7 @@ public class MessageController {
     public Response sendMessages() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User user = userRepository.findByUsername(authentication.getName());
 
         return Response.success(messageService.sendMessages(user));
     }
@@ -72,7 +72,7 @@ public class MessageController {
     @GetMapping("/messages/sender/{id}")
     public Response sendMessage(@ApiParam(value = "쪽지 id", required = true)@PathVariable int id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User user = userRepository.findByUsername(authentication.getName());
 
         return Response.success(messageService.sendMessage(id, user));
     }
@@ -82,7 +82,7 @@ public class MessageController {
     @DeleteMapping("/messages/receiver/{id}")
     public Response deleteReceiveMessage(@ApiParam(value = "쪽지 id", required = true)@PathVariable int id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User user = userRepository.findByUsername(authentication.getName());
 
         messageService.deleteMessageByReceiver(id, user);
         return Response.success();
@@ -93,7 +93,7 @@ public class MessageController {
     @DeleteMapping("/messages/sender/{id}")
     public Response deleteSendMessage(@ApiParam(value = "쪽지 id", required = true)@PathVariable int id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(MemberNotFoundException::new);
+        User user = userRepository.findByUsername(authentication.getName());
 
         messageService.deleteMessageBySender(id, user);
         return Response.success();

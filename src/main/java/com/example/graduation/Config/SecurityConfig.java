@@ -21,7 +21,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
     private final TokenProvider tokenProvider;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
@@ -32,13 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Override
+
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/**", "/swagger-ui.html", "/webjars/**", "/swagger/**");
     }
 
 
-    @Override
+
     protected void configure(HttpSecurity http) throws Exception {
         // CSRF 설정 Disable
         http
@@ -64,8 +64,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
                 .antMatchers("/swagger-ui/**", "/v3/**").permitAll() // swagger
-
-                .antMatchers("/api/sign-up", "/api/sign-in", "/api/reissue","/login/getGoogleAuthUrl","/login/oauth_google_check").permitAll()
+                .anyRequest().permitAll()  // 나머지는 모두 그냥 접근 가능
+                .and()
+                .apply(new JwtSecurityConfig(tokenProvider));
+                /*
+                .antMatchers("/api/sign-up", "/api/sign-in", "/api/reissue","/login/oauth2","/login/oauth2/code/google").permitAll()
+                .antMatchers(HttpMethod.GET, "/login/oauth2/code/google").permitAll()
 
                 .antMatchers(HttpMethod.GET, "/api/users").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
                 .antMatchers(HttpMethod.GET, "/api/users/{id}").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
@@ -119,6 +123,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // ========= oauth login =========== //
 
+
+                 */
 
     }
 

@@ -31,27 +31,20 @@ spring:
     redis:
       host: localhost
       port: 6379
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: 326048053675-7v7efv49t2mcodd6n0qiddtj8ob785kf.apps.googleusercontent.com
-            client-secret: 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
-            redirect-uri: = http://localhost:8080/login/oauth_google_check
-            scope:
-              - email
-              - profileps://oauth2.googleapis.com
 
 
-  
+oauth2:
+  google:
+    client-id: 348263061389-v404eu1ukse567m04m3vketnlonuafh3.apps.googleusercontent.com
+    client-secret: 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
+    redirect-uri: http://localhost:3000
+    token-uri: https://oauth2.googleapis.com/token
+    resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
+    scope: https://www.googleapis.com/auth/userinfo.profile
 
 
 
-
-
-
-# image 업로드를위한 multipart
+  # image 업로드를위한 multipart
   servlet.multipart.max-file-size: 3MB
   servlet.multipart.max-request-size: 3MB
 
