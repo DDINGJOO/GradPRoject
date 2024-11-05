@@ -6,9 +6,9 @@ server:
 ### 이파일 설정에 맞게 알아서 변경해주세요
 spring:
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USER_NAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://localhost:3306/finalproject
+    username: root
+    password: 1001
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -39,8 +39,8 @@ spring:
 
 oauth2:
   google:
-    client-id: ${CLIENT_ID}
-    client-secret: ${CLIENT_SECRET}
+    client-id: 348263061389-v404eu1ukse567m04m3vketnlonuafh3.apps.googleusercontent.com
+    client-secret: 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
     redirect-uri: http://localhost:3000
     token-uri: https://oauth2.googleapis.com/token
     resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
