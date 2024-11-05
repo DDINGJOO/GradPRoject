@@ -1,11 +1,14 @@
 server:
   port: 8080
 
+
+
+### 이파일 설정에 맞게 알아서 변경해주세요
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/finalproject
-    username: root
-    password: 1001
+    url: ${DB_URL}
+    username: ${DB_USER_NAME}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -26,7 +29,8 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher # about swagger
-
+  profiles:
+    active: ${PROFILE}
 
     redis:
       host: localhost
@@ -35,8 +39,8 @@ spring:
 
 oauth2:
   google:
-    client-id: 348263061389-v404eu1ukse567m04m3vketnlonuafh3.apps.googleusercontent.com
-    client-secret: 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
+    client-id: ${CLIENT_ID}
+    client-secret: ${CLIENT_SECRET}
     redirect-uri: http://localhost:3000
     token-uri: https://oauth2.googleapis.com/token
     resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
@@ -50,8 +54,8 @@ oauth2:
 
 
 #본인 데스크톱 경로로 필수 변경
-imgLocation: C:/Users/soh10/Desktop/Graduation/images/
-uploadPath: file:///Users/soh10/Desktop/Graduation/images/
+imgLocation: src/main/static/images/
+uploadPath: src/main/static/images/
 ttbkey : ttbwhddnr1122331414001
 
 jwt:
